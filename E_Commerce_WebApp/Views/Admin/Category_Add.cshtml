@@ -1,0 +1,19 @@
+﻿@model E_Commerce_WebApp.Models.tbl_Categories
+
+@{
+    ViewBag.Title = "Category_Add";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<h2>Category_Add</h2>
+
+<form action="" method="post" enctype="multipart/form-data">
+    <label> Name</label>
+    <input  class="form-control" placeholder="Name" aria-label="Email" aria-describedby="email-addon" type="text" name="name" value="" />
+  
+    <input type="hidden" name="Status" value="0" />
+    <label> Images</label>
+    <input type="file" class="btn bg-info w-12 mt-4 mb-0" name="imgs" value="" />
+    <input class="btn bg-gradient-info w-100 mt-4 mb-0" type="submit" value="Add" />
+
+</form>

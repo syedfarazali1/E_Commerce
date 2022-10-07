@@ -1,0 +1,23 @@
+﻿@model E_Commerce_WebApp.Models.tbl_Images
+
+@{
+    ViewBag.Title = "AddImages";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<h2>AddImages</h2>
+
+<form action="" method="post" enctype="multipart/form-data">
+
+    <input type="file" class="btn bg-info w-12 mt-4 mb-0" name="img1" /> <br />
+    <input type="file"class="btn bg-info w-12 mt-4 mb-0" name="img2" /><br />
+    <input type="file"class="btn bg-info w-12 mt-4 mb-0" name="img3" /><br />
+    <input type="file"class="btn bg-info w-12 mt-4 mb-0"  name="img4" /><br />
+    <input type="hidden"  name="Pro_Id" value="@ViewBag.PID" />
+
+    <input type="submit" class="btn bg-info w-12 mt-5 mb-0" value="ADD_IMG" />
+
+</form>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

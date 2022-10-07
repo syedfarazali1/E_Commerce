@@ -1,0 +1,41 @@
+﻿@model E_Commerce_WebApp.Models.tbl_User
+
+@{
+    ViewBag.Title = "User_Registration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    
+<div class="container">
+    <form action="" method="post" enctype="multipart/form-data">
+        <label class="form-label">User Name</label>
+        <input type="text" class="form-control" required name="name" value="" /> <br />
+        <label class="form-label">Age</label>
+        <input type="number" class="form-control" required name="age" value="" /> <br />
+        <label class="form-label" >Gender</label> <br />
+        Male  <input type="radio" name="gender" value="Male" />
+        Female <input type="radio" name="gender" value="Female" /> <br /><br />
+        <label class="form-label">Cell Number</label>
+        <input type="text" class="form-control" required name="cell" value="" /> <br />
+        <label class="form-label" >Adress</label>
+        <input type="text" class="form-control" required name="address" value="" /> <br />
+        <label class="form-label" >Cnic</label>
+        <input type="text" required class="form-control" name="nic" value="" /> <br />
+        <label class="form-label" >Picture</label>
+        <input type="file" required class="form-control" name="imgs" value="" /> <br />
+
+        <input type="hidden" required class="form-control" name="stuts" value="1" /> <br />
+        <label class="form-label" >User Email</label>
+        <input type="email" required class="form-control" name="email" value="" /> <br />
+        <label class="form-label" >Password</label>
+        <input type="password" required class="form-control" name="pass" value="" /> <br />
+        <input type="submit" class="form-control" value="Submit" />
+
+    </form>
+</div>
+@if (ViewBag.ur != null)
+{
+<script>
+    alart("Registration complete")
+</script>
+}

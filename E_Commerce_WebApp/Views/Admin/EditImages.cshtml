@@ -1,0 +1,41 @@
+﻿@model E_Commerce_WebApp.Models.tbl_Images
+
+@{
+    ViewBag.Title = "AddImages";
+    Layout = "~/Views/Shared/Admin_panel.cshtml";
+}
+
+<h2>EditImages</h2>
+
+<form action="" method="post" enctype="multipart/form-data">
+
+    <img class="d-inline" src="~/Products_images/@Html.DisplayFor(modelItem => Model.Img1)" width="30px" height="30px" alt="@Html.DisplayFor(modelItem => Model.Img1)" />
+    <p> @Html.DisplayFor(modelItem => Model.Img1)</p>
+    <input type="file" name="img1" /> <br />
+
+    <img src="~/Products_images/@Html.DisplayFor(modelItem => Model.Img2)" width="30px" height="30px" alt="@Html.DisplayFor(modelItem => Model.Img2)" />
+    <p> @Html.DisplayFor(modelItem => Model.Img2)</p>
+
+    <input type="file" name="img2" /><br />
+
+    <img src="~/Products_images/@Html.DisplayFor(modelItem => Model.Img3)" width="30px" height="30px" alt="@Html.DisplayFor(modelItem => Model.Img3)" />
+    <p> @Html.DisplayFor(modelItem => Model.Img3)</p>
+
+    <input type="file" name="img3" /><br />
+
+    <img src="~/Products_images/@Html.DisplayFor(modelItem => Model.Img4)" width="30px" height="30px" alt="@Html.DisplayFor(modelItem => Model.Img4)" />
+    <p> @Html.DisplayFor(modelItem => Model.Img4)</p>
+
+    <input type="file" name="img4" /><br />
+
+    <input style="display: none;" type="text" name="Pro_ID" value="@Model.tbl_Product.Pro_Id" />
+
+    <input style="display: none;" type="text" name="Img_Id" value="@Model.Img_Id" />
+
+    <input type="submit" value="Update_IMG" />
+
+</form>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+

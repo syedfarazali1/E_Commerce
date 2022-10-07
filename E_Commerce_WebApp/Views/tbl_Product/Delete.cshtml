@@ -1,0 +1,65 @@
+﻿@model E_Commerce_WebApp.Models.tbl_Product
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>tbl_Product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Pro_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pro_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pro_Details)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pro_Details)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pro_Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pro_Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pro_status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pro_status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_Categories.C_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_Categories.C_Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

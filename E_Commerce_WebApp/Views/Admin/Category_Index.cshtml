@@ -1,0 +1,59 @@
+﻿@model IEnumerable<E_Commerce_WebApp.Models.tbl_Categories>
+
+@{
+    ViewBag.Title = "Category_Index";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<h2>Category_Index</h2>
+
+<p>
+    <a class="btn bg-gradient-info w-100 mt-4 mb-0" href="~/Admin/Category_Add">Create New Category</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Category Names
+        </th>
+        <th>
+            Category Pictures
+        </th>
+        <th>Actions</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.C_Name)
+            </td>
+
+            <td><img src="~/Products_images/Cat/@Html.DisplayFor(modelItem => item.Cat_Images)" alt="@Html.DisplayFor(modelItem => item.Cat_Images)" width="50px" height="50px" /></td>
+            <td>
+                @Html.ActionLink("Edit", "Category_Edit", new { id = item.Cat_Id }) |
+                @Html.ActionLink("Status", "Cat_Status", new { id = item.Cat_Id })
+            </td>
+
+            <td>
+                @if (item.Cat_Starus == "0")
+                {
+
+
+                    <a class="btn btn-success" href="@Url.Action("Cat_Status","Admin", new {id = item.Cat_Id })">
+                        Active
+                    </a>
+                }
+                else
+                {
+                    <a class="btn btn-danger" href="@Url.Action("Cat_Status","Admin", new {id = item.Cat_Id })">
+                        Deactive
+                    </a>
+
+
+
+                }
+            </td>
+        </tr>
+    }
+
+</table>

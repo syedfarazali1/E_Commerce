@@ -1,0 +1,90 @@
+﻿@model IEnumerable<E_Commerce_WebApp.Models.tbl_Product>
+
+@{
+    ViewBag.Title = "Product_Index";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<h2>Product_Index</h2>
+<p>
+    <a class="btn bg-gradient-info w-100 mt-4 mb-0" href="~/Admin/AddProduct">Create New Product</a>
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            S#
+        </th>
+        <th>
+            Product Name
+        </th>
+        <th>
+            Product Details
+        </th>
+        <th>
+            Product Prices
+        </th>
+
+        <th>
+            Category
+        </th>
+        <th>
+            Status
+        </th>
+        <th>
+            Product Images
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pro_Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pro_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pro_Details)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pro_Price)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.tbl_Categories.C_Name)
+            </td>
+            <td>
+                @if (item.Pro_status == "0")
+                {
+
+
+                    <a class="btn btn-success" href="@Url.Action("Status","Admin", new {id = item.Pro_Id })">
+                        Active
+                    </a>
+                }
+                else
+                {
+                    <a class="btn btn-danger" href="@Url.Action("Status","Admin", new {id = item.Pro_Id })">
+                        Deactive
+                    </a>
+
+
+
+                }
+            </td>
+            <td>
+                <img src="~/Products_images/Front/@Html.DisplayFor(modelItem => item.Pro_Img)" width="30px" height="30px" alt="@Html.DisplayFor(modelItem => item.Pro_Img)" />
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Pro_Id }) |
+                @Html.ActionLink("AddImages", "AddImages", new { id = item.Pro_Id }) |
+                @Html.ActionLink("ViewImages", "ViewImages", new { id = item.Pro_Id }) |
+
+            </td>
+        </tr>
+    }
+
+</table>

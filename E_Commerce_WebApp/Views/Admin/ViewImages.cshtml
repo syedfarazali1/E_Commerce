@@ -1,0 +1,73 @@
+﻿@model IEnumerable<E_Commerce_WebApp.Models.tbl_Images>
+
+@{
+    ViewBag.Title = "ViewImages";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<h2>ViewImages</h2>
+
+@foreach (var item in Model)
+{
+<h3> @Html.ActionLink("AddImages", "AddImages", new { id = item.Pro_Id }) </h3>
+}
+
+<br />
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Img1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Img2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Img3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Img4)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbl_Product.Pro_Name)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <img src="~/Products_images/@Html.DisplayFor(modelItem => item.Img1)" width="30px" height="30px" alt="@Html.DisplayFor(modelItem => item.Img1)" />
+
+            </td>
+            <td>
+                <img src="~/Products_images/@Html.DisplayFor(modelItem => item.Img2)" width="30px" height="30px" alt="@Html.DisplayFor(modelItem => item.Img2)" />
+            </td>
+            <td>
+                <img src="~/Products_images/@Html.DisplayFor(modelItem => item.Img3)" width="30px" height="30px" alt="@Html.DisplayFor(modelItem => item.Img3)" />
+
+            </td>
+            <td>
+                <img src="~/Products_images/@Html.DisplayFor(modelItem => item.Img4)" width="30px" height="30px" alt="@Html.DisplayFor(modelItem => item.Img4)" />
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tbl_Product.Pro_Name)
+            </td>
+            @if (item.Img1 != null)
+            {
+                <td>
+                    @Html.ActionLink("Edit_Images", "EditImages", new { id = item.Img_Id }) |
+                    @Html.ActionLink("Product_Details", "Product_Index", new { id = item.tbl_Product.Pro_Id }) |
+                    @Html.ActionLink("Delete_Images", "DeleteImages", new { id = item.Img_Id })
+                </td>
+            }
+
+
+
+
+
+        </tr>
+    }
+
+</table>

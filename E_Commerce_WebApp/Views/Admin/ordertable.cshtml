@@ -1,0 +1,70 @@
+﻿@model IEnumerable<E_Commerce_WebApp.Models.tbl_Order>
+
+@{
+    ViewBag.Title = "ordertable";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<h2>Order Table</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Ord_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ord_Quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ord_Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ord_CardNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ord_Bill)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cus_Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.U_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbl_Product.Pro_Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ord_Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ord_Quantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ord_Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ord_CardNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ord_Bill)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cus_Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.U_Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbl_Product.Pro_Name)
+        </td>
+     
+    </tr>
+}
+
+</table>

@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="E_commerce_ProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="tbl_Admin">
+    <Key>
+      <PropertyRef Name="Ad_Id" />
+    </Key>
+    <Property Name="Ad_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ad_Name" Type="varchar(max)" />
+    <Property Name="Ad_UserName" Type="varchar(max)" />
+    <Property Name="Ad_Password" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="tbl_Categories">
+    <Key>
+      <PropertyRef Name="Cat_Id" />
+    </Key>
+    <Property Name="Cat_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="C_Name" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tbl_Images">
+    <Key>
+      <PropertyRef Name="Img_Id" />
+    </Key>
+    <Property Name="Img_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Img1" Type="varchar(max)" />
+    <Property Name="Pro_Id" Type="int" />
+    <Property Name="Img2" Type="varchar" MaxLength="1" />
+    <Property Name="Img3" Type="varchar" MaxLength="1" />
+    <Property Name="Img4" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="tbl_Order">
+    <Key>
+      <PropertyRef Name="Ord_Id" />
+    </Key>
+    <Property Name="Ord_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ord_Date" Type="varchar" MaxLength="50" />
+    <Property Name="Ord_Quantity" Type="varchar" MaxLength="50" />
+    <Property Name="Ord_Status" Type="varchar" MaxLength="50" />
+    <Property Name="Ord_CardNumber" Type="int" />
+    <Property Name="U_Id" Type="int" />
+    <Property Name="Pro_Id" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_Product">
+    <Key>
+      <PropertyRef Name="Pro_Id" />
+    </Key>
+    <Property Name="Pro_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Pro_Name" Type="varchar" MaxLength="50" />
+    <Property Name="Pro_Details" Type="varchar" MaxLength="50" />
+    <Property Name="Pro_Price" Type="int" />
+    <Property Name="Pro_status" Type="varchar" MaxLength="50" />
+    <Property Name="Cat_Id" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_User">
+    <Key>
+      <PropertyRef Name="U_Id" />
+    </Key>
+    <Property Name="U_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="U_Name" Type="varchar" MaxLength="50" />
+    <Property Name="U_Email" Type="varchar" MaxLength="50" />
+    <Property Name="U_Age" Type="int" />
+    <Property Name="U_Gender" Type="varchar" MaxLength="50" />
+    <Property Name="U_cell" Type="varchar" MaxLength="50" />
+    <Property Name="U_Address" Type="varchar" MaxLength="50" />
+    <Property Name="U_Cnic" Type="varchar" MaxLength="50" />
+    <Property Name="U_Img" Type="varchar" MaxLength="50" />
+    <Property Name="U_Status" Type="varchar" MaxLength="50" />
+    <Property Name="U_UserName" Type="varchar" MaxLength="50" />
+    <Property Name="U_Password" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK__tbl_Image__Pro_I__33D4B598">
+    <End Role="tbl_Product" Type="Self.tbl_Product" Multiplicity="0..1" />
+    <End Role="tbl_Images" Type="Self.tbl_Images" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Product">
+        <PropertyRef Name="Pro_Id" />
+      </Principal>
+      <Dependent Role="tbl_Images">
+        <PropertyRef Name="Pro_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_Order__Pro_I__398D8EEE">
+    <End Role="tbl_Product" Type="Self.tbl_Product" Multiplicity="0..1" />
+    <End Role="tbl_Order" Type="Self.tbl_Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Product">
+        <PropertyRef Name="Pro_Id" />
+      </Principal>
+      <Dependent Role="tbl_Order">
+        <PropertyRef Name="Pro_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_Order__U_Id__38996AB5">
+    <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="0..1" />
+    <End Role="tbl_Order" Type="Self.tbl_Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_User">
+        <PropertyRef Name="U_Id" />
+      </Principal>
+      <Dependent Role="tbl_Order">
+        <PropertyRef Name="U_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_Produ__Cat_I__267ABA7A">
+    <End Role="tbl_Categories" Type="Self.tbl_Categories" Multiplicity="0..1" />
+    <End Role="tbl_Product" Type="Self.tbl_Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Categories">
+        <PropertyRef Name="Cat_Id" />
+      </Principal>
+      <Dependent Role="tbl_Product">
+        <PropertyRef Name="Cat_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="E_commerce_ProjectModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Admin" EntityType="Self.tbl_Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Categories" EntityType="Self.tbl_Categories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Images" EntityType="Self.tbl_Images" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Order" EntityType="Self.tbl_Order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Product" EntityType="Self.tbl_Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_User" EntityType="Self.tbl_User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__tbl_Image__Pro_I__33D4B598" Association="Self.FK__tbl_Image__Pro_I__33D4B598">
+      <End Role="tbl_Product" EntitySet="tbl_Product" />
+      <End Role="tbl_Images" EntitySet="tbl_Images" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_Order__Pro_I__398D8EEE" Association="Self.FK__tbl_Order__Pro_I__398D8EEE">
+      <End Role="tbl_Product" EntitySet="tbl_Product" />
+      <End Role="tbl_Order" EntitySet="tbl_Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_Order__U_Id__38996AB5" Association="Self.FK__tbl_Order__U_Id__38996AB5">
+      <End Role="tbl_User" EntitySet="tbl_User" />
+      <End Role="tbl_Order" EntitySet="tbl_Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_Produ__Cat_I__267ABA7A" Association="Self.FK__tbl_Produ__Cat_I__267ABA7A">
+      <End Role="tbl_Categories" EntitySet="tbl_Categories" />
+      <End Role="tbl_Product" EntitySet="tbl_Product" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

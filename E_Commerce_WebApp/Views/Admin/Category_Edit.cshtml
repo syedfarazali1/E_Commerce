@@ -1,0 +1,39 @@
+﻿@model E_Commerce_WebApp.Models.tbl_Categories
+
+@{
+    ViewBag.Title = "Category_Edit";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<h2>Category_Edit</h2>
+
+<form action="" method="post" enctype="multipart/form-data">
+
+    <h4>tbl_Categories</h4>
+    <hr />
+
+    <label> Category ID</label>
+    <input type="text" class="form-control" name="id" aria-label="Email" aria-describedby="email-addon" value="@Model.Cat_Id" />
+    <label> Category Name</label>
+    <input type="text" class="form-control" name="name" value="@Model.C_Name" />
+
+    <label>Category Status </label>
+    <input type="text" class="form-control" name="Status" value="@Model.Cat_Starus" />
+
+
+    <input type="file" class="form-control" name="imgs" value="" />
+    @if (Model.Cat_Images != null)
+    {
+        <img src="~/Products_images/Front/@Html.DisplayFor(model => Model.Cat_Images)" width="30px" height="30px" alt="@Html.DisplayFor(model => Model.Cat_Images)" />
+    }
+
+
+
+    <input type="submit" class="form-control" value="Save" />
+
+</form>
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

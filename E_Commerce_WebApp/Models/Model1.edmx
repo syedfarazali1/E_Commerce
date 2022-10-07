@@ -1,0 +1,488 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="E_commerce_ProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tbl_Admin">
+          <Key>
+            <PropertyRef Name="Ad_Id" />
+          </Key>
+          <Property Name="Ad_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ad_Name" Type="varchar(max)" />
+          <Property Name="Ad_UserName" Type="varchar(max)" />
+          <Property Name="Ad_Password" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_Categories">
+          <Key>
+            <PropertyRef Name="Cat_Id" />
+          </Key>
+          <Property Name="Cat_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="C_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Cat_Starus" Type="varchar" MaxLength="50" />
+          <Property Name="Cat_Images" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_Contact">
+          <Key>
+            <PropertyRef Name="Con_ID" />
+          </Key>
+          <Property Name="Con_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Subject" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Message" Type="varchar(max)" Nullable="false" />
+          <Property Name="User_ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_Images">
+          <Key>
+            <PropertyRef Name="Img_Id" />
+          </Key>
+          <Property Name="Img_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Img1" Type="varchar(max)" />
+          <Property Name="Pro_Id" Type="int" />
+          <Property Name="Img2" Type="varchar(max)" />
+          <Property Name="Img3" Type="varchar(max)" />
+          <Property Name="Img4" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_Order">
+          <Key>
+            <PropertyRef Name="Ord_Id" />
+          </Key>
+          <Property Name="Ord_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ord_Date" Type="varchar" MaxLength="50" />
+          <Property Name="Ord_Quantity" Type="varchar" MaxLength="50" />
+          <Property Name="Ord_Status" Type="varchar" MaxLength="50" />
+          <Property Name="Ord_CardNumber" Type="int" />
+          <Property Name="Pro_Id" Type="int" />
+          <Property Name="Ord_Bill" Type="int" />
+          <Property Name="Cus_Address" Type="varchar(max)" />
+          <Property Name="U_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_Product">
+          <Key>
+            <PropertyRef Name="Pro_Id" />
+          </Key>
+          <Property Name="Pro_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Pro_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Pro_Details" Type="varchar" MaxLength="50" />
+          <Property Name="Pro_Price" Type="int" />
+          <Property Name="Pro_status" Type="varchar" MaxLength="50" />
+          <Property Name="Cat_Id" Type="int" />
+          <Property Name="Pro_Img" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_User">
+          <Key>
+            <PropertyRef Name="U_Id" />
+          </Key>
+          <Property Name="U_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="U_Name" Type="varchar" MaxLength="50" />
+          <Property Name="U_Email" Type="varchar" MaxLength="50" />
+          <Property Name="U_Age" Type="int" />
+          <Property Name="U_Gender" Type="varchar" MaxLength="50" />
+          <Property Name="U_cell" Type="varchar" MaxLength="50" />
+          <Property Name="U_Address" Type="varchar" MaxLength="50" />
+          <Property Name="U_Cnic" Type="varchar" MaxLength="50" />
+          <Property Name="U_Img" Type="varchar" MaxLength="50" />
+          <Property Name="U_Status" Type="varchar" MaxLength="50" />
+          <Property Name="U_UserName" Type="varchar" MaxLength="50" />
+          <Property Name="U_Password" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="Cat_ID">
+          <End Role="tbl_Categories" Type="Self.tbl_Categories" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_Product" Type="Self.tbl_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Categories">
+              <PropertyRef Name="Cat_Id" />
+            </Principal>
+            <Dependent Role="tbl_Product">
+              <PropertyRef Name="Cat_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_Image__Pro_I__33D4B598">
+          <End Role="tbl_Product" Type="Self.tbl_Product" Multiplicity="0..1" />
+          <End Role="tbl_Images" Type="Self.tbl_Images" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Product">
+              <PropertyRef Name="Pro_Id" />
+            </Principal>
+            <Dependent Role="tbl_Images">
+              <PropertyRef Name="Pro_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Contact_tbl_User">
+          <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="1" />
+          <End Role="tbl_Contact" Type="Self.tbl_Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_User">
+              <PropertyRef Name="U_Id" />
+            </Principal>
+            <Dependent Role="tbl_Contact">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Pro_Id">
+          <End Role="tbl_Product" Type="Self.tbl_Product" Multiplicity="0..1" />
+          <End Role="tbl_Order" Type="Self.tbl_Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Product">
+              <PropertyRef Name="Pro_Id" />
+            </Principal>
+            <Dependent Role="tbl_Order">
+              <PropertyRef Name="Pro_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="E_commerce_ProjectModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Admin" EntityType="Self.tbl_Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Categories" EntityType="Self.tbl_Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Contact" EntityType="Self.tbl_Contact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Images" EntityType="Self.tbl_Images" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Order" EntityType="Self.tbl_Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Product" EntityType="Self.tbl_Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_User" EntityType="Self.tbl_User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="Cat_ID" Association="Self.Cat_ID">
+            <End Role="tbl_Categories" EntitySet="tbl_Categories" />
+            <End Role="tbl_Product" EntitySet="tbl_Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_Image__Pro_I__33D4B598" Association="Self.FK__tbl_Image__Pro_I__33D4B598">
+            <End Role="tbl_Product" EntitySet="tbl_Product" />
+            <End Role="tbl_Images" EntitySet="tbl_Images" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Contact_tbl_User" Association="Self.FK_tbl_Contact_tbl_User">
+            <End Role="tbl_User" EntitySet="tbl_User" />
+            <End Role="tbl_Contact" EntitySet="tbl_Contact" />
+          </AssociationSet>
+          <AssociationSet Name="Pro_Id" Association="Self.Pro_Id">
+            <End Role="tbl_Product" EntitySet="tbl_Product" />
+            <End Role="tbl_Order" EntitySet="tbl_Order" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="E_commerce_ProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tbl_Admin">
+          <Key>
+            <PropertyRef Name="Ad_Id" />
+          </Key>
+          <Property Name="Ad_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ad_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Ad_UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Ad_Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_Categories">
+          <Key>
+            <PropertyRef Name="Cat_Id" />
+          </Key>
+          <Property Name="Cat_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="C_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Cat_Starus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Cat_Images" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tbl_Product" Relationship="Self.Cat_ID" FromRole="tbl_Categories" ToRole="tbl_Product" />
+        </EntityType>
+        <EntityType Name="tbl_Images">
+          <Key>
+            <PropertyRef Name="Img_Id" />
+          </Key>
+          <Property Name="Img_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Img1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Pro_Id" Type="Int32" />
+          <Property Name="Img2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Img3" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Img4" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tbl_Product" Relationship="Self.FK__tbl_Image__Pro_I__33D4B598" FromRole="tbl_Images" ToRole="tbl_Product" />
+        </EntityType>
+        <EntityType Name="tbl_Order">
+          <Key>
+            <PropertyRef Name="Ord_Id" />
+          </Key>
+          <Property Name="Ord_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ord_Date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Ord_Quantity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Ord_Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Ord_CardNumber" Type="Int32" />
+          <Property Name="Pro_Id" Type="Int32" />
+          <Property Name="Ord_Bill" Type="Int32" />
+          <Property Name="Cus_Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tbl_Product" Relationship="Self.Pro_Id" FromRole="tbl_Order" ToRole="tbl_Product" />
+          <Property Name="U_Id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_Product">
+          <Key>
+            <PropertyRef Name="Pro_Id" />
+          </Key>
+          <Property Name="Pro_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Pro_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Pro_Details" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Pro_Price" Type="Int32" />
+          <Property Name="Pro_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Cat_Id" Type="Int32" />
+          <Property Name="Pro_Img" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tbl_Categories" Relationship="Self.Cat_ID" FromRole="tbl_Product" ToRole="tbl_Categories" />
+          <NavigationProperty Name="tbl_Images" Relationship="Self.FK__tbl_Image__Pro_I__33D4B598" FromRole="tbl_Product" ToRole="tbl_Images" />
+          <NavigationProperty Name="tbl_Order" Relationship="Self.Pro_Id" FromRole="tbl_Product" ToRole="tbl_Order" />
+        </EntityType>
+        <EntityType Name="tbl_User">
+          <Key>
+            <PropertyRef Name="U_Id" />
+          </Key>
+          <Property Name="U_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="U_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="U_Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="U_Age" Type="Int32" />
+          <Property Name="U_Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="U_cell" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="U_Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="U_Cnic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="U_Img" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="U_Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="U_UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="U_Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tbl_Contact" Relationship="E_commerce_ProjectModel.FK_tbl_Contact_tbl_User" FromRole="tbl_User" ToRole="tbl_Contact" />
+        </EntityType>
+        <Association Name="Cat_ID">
+          <End Role="tbl_Categories" Type="Self.tbl_Categories" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_Product" Type="Self.tbl_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Categories">
+              <PropertyRef Name="Cat_Id" />
+            </Principal>
+            <Dependent Role="tbl_Product">
+              <PropertyRef Name="Cat_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_Image__Pro_I__33D4B598">
+          <End Role="tbl_Product" Type="Self.tbl_Product" Multiplicity="0..1" />
+          <End Role="tbl_Images" Type="Self.tbl_Images" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Product">
+              <PropertyRef Name="Pro_Id" />
+            </Principal>
+            <Dependent Role="tbl_Images">
+              <PropertyRef Name="Pro_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Pro_Id">
+          <End Role="tbl_Product" Type="Self.tbl_Product" Multiplicity="0..1" />
+          <End Role="tbl_Order" Type="Self.tbl_Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Product">
+              <PropertyRef Name="Pro_Id" />
+            </Principal>
+            <Dependent Role="tbl_Order">
+              <PropertyRef Name="Pro_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="E_commerce_ProjectEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="tbl_Admin" EntityType="Self.tbl_Admin" />
+          <EntitySet Name="tbl_Categories" EntityType="Self.tbl_Categories" />
+          <EntitySet Name="tbl_Images" EntityType="Self.tbl_Images" />
+          <EntitySet Name="tbl_Order" EntityType="Self.tbl_Order" />
+          <EntitySet Name="tbl_Product" EntityType="Self.tbl_Product" />
+          <EntitySet Name="tbl_User" EntityType="Self.tbl_User" />
+          <AssociationSet Name="Cat_ID" Association="Self.Cat_ID">
+            <End Role="tbl_Categories" EntitySet="tbl_Categories" />
+            <End Role="tbl_Product" EntitySet="tbl_Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_Image__Pro_I__33D4B598" Association="Self.FK__tbl_Image__Pro_I__33D4B598">
+            <End Role="tbl_Product" EntitySet="tbl_Product" />
+            <End Role="tbl_Images" EntitySet="tbl_Images" />
+          </AssociationSet>
+          <AssociationSet Name="Pro_Id" Association="Self.Pro_Id">
+            <End Role="tbl_Product" EntitySet="tbl_Product" />
+            <End Role="tbl_Order" EntitySet="tbl_Order" />
+          </AssociationSet>
+          <EntitySet Name="tbl_Contact" EntityType="E_commerce_ProjectModel.tbl_Contact" />
+          <AssociationSet Name="FK_tbl_Contact_tbl_User" Association="E_commerce_ProjectModel.FK_tbl_Contact_tbl_User">
+            <End Role="tbl_User" EntitySet="tbl_User" />
+            <End Role="tbl_Contact" EntitySet="tbl_Contact" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tbl_Contact">
+          <Key>
+            <PropertyRef Name="Con_ID" />
+          </Key>
+          <Property Name="Con_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Subject" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Message" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="User_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tbl_User" Relationship="E_commerce_ProjectModel.FK_tbl_Contact_tbl_User" FromRole="tbl_Contact" ToRole="tbl_User" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_tbl_Contact_tbl_User">
+          <End Type="E_commerce_ProjectModel.tbl_User" Role="tbl_User" Multiplicity="1" />
+          <End Type="E_commerce_ProjectModel.tbl_Contact" Role="tbl_Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_User">
+              <PropertyRef Name="U_Id" />
+            </Principal>
+            <Dependent Role="tbl_Contact">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="E_commerce_ProjectModelStoreContainer" CdmEntityContainer="E_commerce_ProjectEntities1">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="E_commerce_ProjectModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Admin">
+            <EntityTypeMapping TypeName="E_commerce_ProjectModel.tbl_Admin">
+              <MappingFragment StoreEntitySet="tbl_Admin">
+                <ScalarProperty Name="Ad_Id" ColumnName="Ad_Id" />
+                <ScalarProperty Name="Ad_Name" ColumnName="Ad_Name" />
+                <ScalarProperty Name="Ad_UserName" ColumnName="Ad_UserName" />
+                <ScalarProperty Name="Ad_Password" ColumnName="Ad_Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Categories">
+            <EntityTypeMapping TypeName="E_commerce_ProjectModel.tbl_Categories">
+              <MappingFragment StoreEntitySet="tbl_Categories">
+                <ScalarProperty Name="Cat_Id" ColumnName="Cat_Id" />
+                <ScalarProperty Name="C_Name" ColumnName="C_Name" />
+                <ScalarProperty Name="Cat_Starus" ColumnName="Cat_Starus" />
+                <ScalarProperty Name="Cat_Images" ColumnName="Cat_Images" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Images">
+            <EntityTypeMapping TypeName="E_commerce_ProjectModel.tbl_Images">
+              <MappingFragment StoreEntitySet="tbl_Images">
+                <ScalarProperty Name="Img_Id" ColumnName="Img_Id" />
+                <ScalarProperty Name="Img1" ColumnName="Img1" />
+                <ScalarProperty Name="Pro_Id" ColumnName="Pro_Id" />
+                <ScalarProperty Name="Img2" ColumnName="Img2" />
+                <ScalarProperty Name="Img3" ColumnName="Img3" />
+                <ScalarProperty Name="Img4" ColumnName="Img4" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Order">
+            <EntityTypeMapping TypeName="E_commerce_ProjectModel.tbl_Order">
+              <MappingFragment StoreEntitySet="tbl_Order">
+                <ScalarProperty Name="U_Id" ColumnName="U_Id" />
+                <ScalarProperty Name="Ord_Id" ColumnName="Ord_Id" />
+                <ScalarProperty Name="Ord_Date" ColumnName="Ord_Date" />
+                <ScalarProperty Name="Ord_Quantity" ColumnName="Ord_Quantity" />
+                <ScalarProperty Name="Ord_Status" ColumnName="Ord_Status" />
+                <ScalarProperty Name="Ord_CardNumber" ColumnName="Ord_CardNumber" />
+                <ScalarProperty Name="Pro_Id" ColumnName="Pro_Id" />
+                <ScalarProperty Name="Ord_Bill" ColumnName="Ord_Bill" />
+                <ScalarProperty Name="Cus_Address" ColumnName="Cus_Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Product">
+            <EntityTypeMapping TypeName="E_commerce_ProjectModel.tbl_Product">
+              <MappingFragment StoreEntitySet="tbl_Product">
+                <ScalarProperty Name="Pro_Id" ColumnName="Pro_Id" />
+                <ScalarProperty Name="Pro_Name" ColumnName="Pro_Name" />
+                <ScalarProperty Name="Pro_Details" ColumnName="Pro_Details" />
+                <ScalarProperty Name="Pro_Price" ColumnName="Pro_Price" />
+                <ScalarProperty Name="Pro_status" ColumnName="Pro_status" />
+                <ScalarProperty Name="Cat_Id" ColumnName="Cat_Id" />
+                <ScalarProperty Name="Pro_Img" ColumnName="Pro_Img" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_User">
+            <EntityTypeMapping TypeName="E_commerce_ProjectModel.tbl_User">
+              <MappingFragment StoreEntitySet="tbl_User">
+                <ScalarProperty Name="U_Id" ColumnName="U_Id" />
+                <ScalarProperty Name="U_Name" ColumnName="U_Name" />
+                <ScalarProperty Name="U_Email" ColumnName="U_Email" />
+                <ScalarProperty Name="U_Age" ColumnName="U_Age" />
+                <ScalarProperty Name="U_Gender" ColumnName="U_Gender" />
+                <ScalarProperty Name="U_cell" ColumnName="U_cell" />
+                <ScalarProperty Name="U_Address" ColumnName="U_Address" />
+                <ScalarProperty Name="U_Cnic" ColumnName="U_Cnic" />
+                <ScalarProperty Name="U_Img" ColumnName="U_Img" />
+                <ScalarProperty Name="U_Status" ColumnName="U_Status" />
+                <ScalarProperty Name="U_UserName" ColumnName="U_UserName" />
+                <ScalarProperty Name="U_Password" ColumnName="U_Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Contact">
+            <EntityTypeMapping TypeName="E_commerce_ProjectModel.tbl_Contact">
+              <MappingFragment StoreEntitySet="tbl_Contact">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="User_Email" ColumnName="User_Email" />
+                <ScalarProperty Name="Con_ID" ColumnName="Con_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

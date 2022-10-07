@@ -1,0 +1,59 @@
+﻿@model E_Commerce_WebApp.Models.tbl_Product
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tbl_Product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Pro_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pro_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pro_Details)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pro_Details)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pro_Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pro_Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pro_status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pro_status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_Categories.C_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_Categories.C_Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Pro_Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
